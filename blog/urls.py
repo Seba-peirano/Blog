@@ -1,8 +1,9 @@
 from django.urls import path
+from django.contrib.auth.views import LogoutView
 from .views import(
     BlogHomePageView,
-    about,index,login_request, register
-)
+    about,index,login_request, register,logout
+    )
 app_name="blog"
 
 urlpatterns= [
@@ -11,4 +12,5 @@ urlpatterns= [
     path("index", index, name="index" ),
     path('login', login_request, name="login"),
     path('register', register, name="register"),
+     path('logout', logout, name='logout'), #hasta aca
 ]

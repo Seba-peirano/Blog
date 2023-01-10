@@ -51,3 +51,7 @@ def register(request):
     else:
         form=RegistroUsuarioForm()
     return render(request, "register.html", {"form":form})
+
+def logout(request):
+    return render(request, "logout.html")
+    

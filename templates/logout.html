@@ -2,24 +2,6 @@
 {% load static %}
 
 {% block titulo %}
-<h1 class="mb-5">FORMULARIO DE INGRESO</h1>
+<h1 class="mb-5">Te has deslogueado</h1>
 {% endblock %}
 
-{% block contenido_que_cambia %}
-
-<form action="{% url 'blog:login'  %}" method="POST"> {% csrf_token %}
-
-    <table>
-    
-        {{ form.as_table }}
-    
-    </table>
-    
-    <input type="submit" value="INGRESAR">
-    
-    
-    </form>
-
-    {{ mensaje }}
-
-{% endblock %}
