@@ -1,26 +1,12 @@
-{% extends 'blog/padre.html' %}
-
+{% extends 'blog/padre-index.html' %}
 {% block title %} 
+
 {% for post in posts %}
+<a href="{% url 'blog:post-detail' slug=post.slug %}">
 {{  post.title }}
+{{  post.published }}
+{{ post.excerpt|truncatechars:3}}
+</a>    
 {% endfor %}
 {% endblock title %}
 
-{% block published %} 
-{% for post in posts %}
-{{  post.published }}
-{% endfor %}
-{% endblock published %}
-
-{% block author %} 
-{% for post in posts %}
-{{  post.author }}
-{% endfor %}
-{% endblock author %}
-
-
-{% block content %} 
-{% for post in posts %}
-{{  post.excerpt }}
-{% endfor %}
-{% endblock content %}

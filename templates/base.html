@@ -13,6 +13,7 @@
         <link href="{% static 'index/css/styles.css' %}" rel="stylesheet" />
     </head>
     <body>
+      
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
@@ -21,6 +22,9 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'blog:index'%}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'blog:about'%}">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'blog:login'%}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'blog:register'%}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'blog:logout'%}">Logout</a></li>
                 
                         
                     </ul>
@@ -33,7 +37,7 @@
                 <div class="text-center my-5">
                     <h1 class="fw-bolder">Bienvenido al blog de autos clásicos</h1>
                     
-                    {% block title-index %} hola {% endblock title-index %}
+                    
                 </div>
             </div>
         </header>
@@ -43,18 +47,21 @@
                 <!-- Blog entries-->
                 <div class="col-lg-8">
                     
-                    <h2 class="card-title"> {% block title %} {% endblock title %}</h2> 
+                    <h2 class=> </h2> 
                     <!-- Featured blog post-->
-                    <div class="card mb-4">
+                    <div class=>
                         <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                        <div class="card-body">
+                        <div class=>
                             <div class="small text-muted">January 1, 2022</div>
-                            <h2 class="card-title">Featured Post Title</h2>
+                            <h2 class="card-title">{% block title-index %} {% endblock title-index %}</h2>
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
                             <a class="btn btn-primary" href="#!">Read more →</a>
                         </div>
                     </div>
                     <!-- Nested row for non-featured blog posts-->
+                    {% block title %}
+        
+                    {% endblock title %}
                     <div class="row">
                         <div class="col-lg-6">
                             <!-- Blog post-->

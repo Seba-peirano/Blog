@@ -1,0 +1,9 @@
+{% extends 'blog/padre.html' %}
+
+{% block title %} 
+
+{{  post.title }} a
+{{  post.published }}
+{{ post.excerpt|truncatechars:25}}
+
+{% endblock title %}
