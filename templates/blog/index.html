@@ -1,0 +1,26 @@
+{% extends 'blog/padre.html' %}
+
+{% block title %} 
+{% for post in posts %}
+{{  post.title }}
+{% endfor %}
+{% endblock title %}
+
+{% block published %} 
+{% for post in posts %}
+{{  post.published }}
+{% endfor %}
+{% endblock published %}
+
+{% block author %} 
+{% for post in posts %}
+{{  post.author }}
+{% endfor %}
+{% endblock author %}
+
+
+{% block content %} 
+{% for post in posts %}
+{{  post.excerpt }}
+{% endfor %}
+{% endblock content %}

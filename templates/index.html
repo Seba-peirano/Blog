@@ -1,0 +1,7 @@
+{% extends 'padre-index.html' %}
+
+{% block title-index %} 
+{% for post in posts %}
+{{  post.title }}
+{% endfor %}
+{% endblock title-index %}
