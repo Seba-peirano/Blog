@@ -15,7 +15,9 @@ class BlogHomePageView(TemplateView):
         return context
 
 def index(request):
-    return render(request, "index.html")
+    return render(request, "blog/index.html")
+def NewPost(request):
+    return render(request, "blog/new-post.html")
 
 def about(request):
     return render(request, "about.html") 

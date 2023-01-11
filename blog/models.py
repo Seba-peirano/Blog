@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 class Category(models.Model):
     name=models.CharField(max_length= 100)
@@ -15,7 +16,7 @@ class Post(models.Model):
     category=models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     title=models.CharField(max_length=255)
     excerpt=models.TextField()
-    content=models.TextField()
+    content=RichTextField()
     slug=models.SlugField(max_length=250, unique_for_date="published", null=False, unique=True)
     published=models.DateTimeField(default=timezone.now)
     author=models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_post")

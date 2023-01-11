@@ -19,11 +19,12 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'blog:blog/index'%}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'blog:index'%}">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'blog:about'%}">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'blog:login'%}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'blog:register'%}">Register</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'blog:logout'%}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'blog:newpost'%}">NEW POST</a></li>
                 
                         
                     </ul>
@@ -109,6 +110,8 @@
                         </div>
                     </section>
                 </div>
+                               
+                
                 <!-- Side widgets-->
                 <div class="col-lg-4">
                     <!-- Search widget-->
@@ -121,6 +124,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">Categories</div>

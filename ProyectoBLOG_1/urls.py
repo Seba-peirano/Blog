@@ -21,8 +21,6 @@ from .views import (
 
 urlpatterns= [
     path('admin/', admin.site.urls),
-    path('',HomePageView.as_view(), name='Home'),
-    path('blog/',include("blog.urls", namespace='blog')),
-   
-    
+    path('',HomePageView, name='Home'),
+    path('blog/',include("blog.urls", namespace='blog')),    
 ]

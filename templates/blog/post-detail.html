@@ -2,8 +2,12 @@
 
 {% block title %} 
 
-{{  post.title }} a
-{{  post.published }}
-{{ post.excerpt|truncatechars:25}}
+<h1>{{  post.title }} </h1>
+    <h3>{{  post.category  }}</h3>
+        <h4>Autor: {{  post.author }}</h4>
+            <h5>Fecha de publicación: {{  post.published }}</h5>
+                <h5>Resumen: {{  post.excerpt }}</h5>
+<h7>{{  post.content }}</h7>
+
 
 {% endblock title %}

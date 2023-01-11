@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
+from django.shortcuts import render
 
-
-class HomePageView (TemplateView):
-    template_name='index.html'
+def HomePageView(request):
+    return render(request, "blog/index.html") 
 
