@@ -1,8 +1,8 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-from .views import(
+from blog.views import(
     BlogHomePageView,
-    about,index,login_request, register,logout, PostDetailView,NewPost
+    about,index,login_request, register,logout, PostDetailView,NewPost,AllPost
     )
 app_name="blog"
 
@@ -12,6 +12,7 @@ urlpatterns= [
     path("index", index, name="index" ),
     path('login', login_request, name="login"),
     path('newpost', NewPost, name="newpost"),
+    path('index', AllPost, name="allpost"),
     path('register', register, name="register"),
     path('logout', logout, name='logout'), #hasta aca
     path('<slug:slug>/', PostDetailView.as_view(), name='post-detail'),

@@ -18,6 +18,9 @@ def index(request):
     return render(request, "blog/index.html")
 def NewPost(request):
     return render(request, "blog/new-post.html")
+    
+def AllPost(request):
+    return render(request, "blog/index.html")
 
 def about(request):
     return render(request, "about.html") 
