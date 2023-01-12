@@ -4,7 +4,8 @@ from django.views.generic.detail import DetailView
 from .models import Post
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout, authenticate
-from .forms import RegistroUsuarioForm
+from .forms import RegistroUsuarioForm, PostFormulario
+from django.http import HttpResponse
 
 class BlogHomePageView(TemplateView):
     template_name= "blog/allpost.html"
@@ -16,7 +17,21 @@ class BlogHomePageView(TemplateView):
 
 
 def NewPost(request):
-    return render(request, "blog/new-post.html")
+    data={
+        'form':PostFormulario()
+    }
+
+    if request.method=="POST":
+        formulario_post=PostFormulario(data=request.POST)
+        if formulario_post.is_valid():
+            formulario_post.save()
+            return render(request,"blog/inicio.html")
+        else:
+            formulario=PostFormulario()
+        return render(request, "blog/new-post.html", {"form":formulario})
+    else:
+        formulario=PostFormulario()
+    return render(request, "blog/new-post.html", {"form":formulario})
 
 def AllPost(request):
     return render(request, "blog/allpost.html")
@@ -71,3 +86,19 @@ class PostDetailView (DetailView):
         return context 
 def HomePageView(request):
     return render(request, 'blog/inicio.html') 
+
+def FormPost (request):
+    if request.method=="POST":
+        formulario_post=PostFormulario(request.POST)
+              
+        if formulario_post.is_valid():
+            informacion=formulario_post.cleaned_data
+            formulario1=Post(title=informacion["title"], excerpt=informacion["excerpt"])
+            formulario1.save()
+            return render(request,"blog/inicio.html")
+        else:
+            formulario=PostFormulario()
+        return render(request, "blog/new-post.html", {"form":formulario})
+    else:
+        formulario=PostFormulario()
+    return render(request, "blog/new-post.html", {"form":formulario})

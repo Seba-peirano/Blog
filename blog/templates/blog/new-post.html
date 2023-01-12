@@ -1,1 +1,18 @@
-holaa
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h1>Escriba su post</h1>
+<form action="{% url 'blog:new-post' %}" method="POST"> {% csrf_token %}
+
+    <table>
+
+        {{ form }}
+
+    </table>
+
+    <input type="submit" value="ENVIAR POST">
+
+
+</form>
+{{ mensaje}}
+{% endblock content %}

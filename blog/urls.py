@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.views import LogoutView
 from blog.views import(
     BlogHomePageView,
-    about,login_request, register,logout, PostDetailView,NewPost,AllPost,HomePageView
+    about,login_request, register,logout, PostDetailView,NewPost,AllPost,HomePageView, FormPost
     )
 app_name="blog"
 
@@ -18,6 +18,7 @@ urlpatterns= [
     path('allpost', BlogHomePageView.as_view(), name="allpost"),
     path('register', register, name="register"),
     path('logout', logout, name='logout'), #hasta aca
+    path('new-post', FormPost, name='new-post'),
     path('<slug:slug>/', PostDetailView.as_view(), name='post-detail'),
 ]
 

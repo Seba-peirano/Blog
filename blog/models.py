@@ -19,9 +19,10 @@ class Post(models.Model):
     content=RichTextField()
     slug=models.SlugField(max_length=250, unique_for_date="published", null=False, unique=True)
     published=models.DateTimeField(default=timezone.now)
-    author=models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_post")
+    author=models.CharField(max_length=30)
+    #author=models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_post")
     status= models.CharField(max_length=10, choices=OPTIONS , default="draft")
-    imagen=models.ImageField(upload_to="images", null=True)
+    #imagen=models.ImageField(upload_to="images", null=True)
     objects= models.Manager()
     postobjects=PostObjects()
     
