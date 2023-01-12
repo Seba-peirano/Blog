@@ -7,23 +7,22 @@ from django.contrib.auth import login,logout, authenticate
 from .forms import RegistroUsuarioForm
 
 class BlogHomePageView(TemplateView):
-    template_name= "blog/index.html"
+    template_name= "blog/allpost.html"
 
     def get_context_data(self, **kwargs):
         context=super().get_context_data(**kwargs)
         context["posts"]= Post.postobjects.all()
         return context
 
-def index(request):
-    return render(request, "blog/index.html")
+
 def NewPost(request):
     return render(request, "blog/new-post.html")
-    
+
 def AllPost(request):
-    return render(request, "blog/index.html")
+    return render(request, "blog/allpost.html")
 
 def about(request):
-    return render(request, "about.html") 
+    return render(request, "blog/about.html") 
 
 def login_request (request):
     if request.method == "POST":
@@ -35,13 +34,13 @@ def login_request (request):
             user= authenticate(username=usuario, password=contra)
             if user is not None:
                 login(request, user)
-                return render(request,"login.html", {"mensaje":f"Bienvenido {usuario}"})
+                return render(request,"blog/login.html", {"mensaje":f"Bienvenido {usuario}"})
             else:
-                return render(request,"login.html", {"mensaje":"Error, datos incorrectos."})
+                return render(request,"blog/login.html", {"mensaje":"Error, datos incorrectos."})
         else:
-            return render(request,"login.html", {"mensaje":"Error, formulario erroneo."})
+            return render(request,"blog/login.html", {"mensaje":"Error, formulario erroneo."})
     form= AuthenticationForm()
-    return render (request,"login.html",{"form":form} )
+    return render (request,"blog/login.html",{"form":form} )
 
 def register(request):
     if request.method=="POST":
@@ -50,23 +49,25 @@ def register(request):
             username=form.cleaned_data.get("username")
             form.save()
             #aca se podria loguear el usuario, con authenticate y login... pero no lo hago
-            return render(request, "register.html", {"mensaje":f"Usuario {username} creado correctamente"})
+            return render(request, "blog/register.html", {"mensaje":f"Usuario {username} creado correctamente"})
         else:
-            return render(request, "register.html", {"form":form, "mensaje":"Error al crear el usuario"})
+            return render(request, "blog/register.html", {"form":form, "mensaje":"Error al crear el usuario"})
         
     else:
         form=RegistroUsuarioForm()
-    return render(request, "register.html", {"form":form})
+    return render(request, "blog/register.html", {"form":form})
 
 def logout(request):
-    return render(request, "logout.html")
+    return render(request, "blog/logout.html")
 
 class PostDetailView (DetailView):
     model= Post
-    template_name='blog/post-detail.html'
+    template_name='blog/postdetail.html'
     context_object_name='post'
 
     def get_context_data(self,**kwargs):
         context=super().get_context_data(**kwargs)
         post= Post.objects.filter(slug=self.kwargs.get ('slug'))
         return context 
+def HomePageView(request):
+    return render(request, 'blog/inicio.html') 
