@@ -6,6 +6,10 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout, authenticate
 from .forms import RegistroUsuarioForm, PostFormulario
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
+
 
 class BlogHomePageView(TemplateView):
     template_name= "blog/allpost.html"
@@ -15,7 +19,7 @@ class BlogHomePageView(TemplateView):
         context["posts"]= Post.postobjects.all()
         return context
 
-
+@login_required
 def NewPost(request):
     data={
         'form':PostFormulario()
@@ -39,7 +43,10 @@ def AllPost(request):
 def about(request):
     return render(request, "blog/about.html") 
 
-def login_request (request):
+def Construccion(request):
+    return render(request, "blog/construccion.html") 
+
+def Login_request (request):
     if request.method == "POST":
         form= AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -49,12 +56,13 @@ def login_request (request):
             user= authenticate(username=usuario, password=contra)
             if user is not None:
                 login(request, user)
-                return render(request,"blog/login.html", {"mensaje":f"Bienvenido {usuario}"})
+                return render(request,"blog/inicio.html", {"mensaje":f"Bienvenido {usuario}"})
             else:
                 return render(request,"blog/login.html", {"mensaje":"Error, datos incorrectos."})
         else:
             return render(request,"blog/login.html", {"mensaje":"Error, formulario erroneo."})
-    form= AuthenticationForm()
+    else:
+        form= AuthenticationForm()
     return render (request,"blog/login.html",{"form":form} )
 
 def register(request):
@@ -72,6 +80,7 @@ def register(request):
         form=RegistroUsuarioForm()
     return render(request, "blog/register.html", {"form":form})
 
+@login_required
 def logout(request):
     return render(request, "blog/logout.html")
 
@@ -87,6 +96,7 @@ class PostDetailView (DetailView):
 def HomePageView(request):
     return render(request, 'blog/inicio.html') 
 
+@login_required
 def FormPost (request):
     if request.method=="POST":
         formulario_post=PostFormulario(request.POST)

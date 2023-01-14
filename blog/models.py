@@ -16,7 +16,7 @@ class Post(models.Model):
     category=models.ForeignKey(Category, on_delete=models.PROTECT, default=1)
     title=models.CharField(max_length=255)
     excerpt=models.TextField()
-    content=RichTextField()
+    content=models.TextField()
     slug=models.SlugField(max_length=250, unique_for_date="published", null=False, unique=True)
     published=models.DateTimeField(default=timezone.now)
     author=models.CharField(max_length=30)

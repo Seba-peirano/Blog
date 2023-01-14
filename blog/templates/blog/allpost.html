@@ -8,7 +8,7 @@
     <div class="card-body">
         <div class="small text-muted">{{ post.published }}</div>
         <h2 class="card-title h4">{{ post.title }}</h2>
-        <p class="card-text">{{ post.content|truncatechars:35}}</p>
+        <p class="card-text">{{ post.content|truncatechars:200}}</p>
         <a class="btn btn-primary" href="{% url 'blog:post-detail' slug=post.slug %}">Read more →</a>
     </div>
 </div>
